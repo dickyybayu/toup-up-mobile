@@ -211,3 +211,72 @@
     
     }
     ```      
+
+# Tugas 8
+## Pertanyaan dan Jawaban
+1. **Apa kegunaan `const` di Flutter? Jelaskan apa keuntungan ketika menggunakan `const` pada kode Flutter. Kapan sebaiknya kita menggunakan `const`, dan kapan sebaiknya tidak digunakan?**
+
+    kegunaan `const` di Flutter yaitu digunakan untuk membuat nilai atau widget menjadi konstan dan immutabel pada waktu kompilasi, yang berarti tidak bisa diubah setelah didefinisikan. Dengan `const`, kita dapat mengoptimalkan performa aplikasi karena Flutter hanya akan membuat objek tersebut satu kali di memori sehingga penggunaan memori lebih efisien dan waktu kompilasi lebih cepat. Menggunakan `const` juga mempermudah proses debugging. ketika kita menggunakan `const`, kita tahu bahwa nilai atau widget tersebut tidak akan dipengaruhi oleh perubahan state atau variabel lain.
+
+    `const` cocok untuk digunakan untuk widget atau nilai yang tidak pernah berubah, seperti teks statis, padding tetap, atau warna yang konsisten di seluruh aplikasi. Namun, `const` tidak cocok untuk widget atau nilai yang bergantung pada data dinamis, misalnya teks yang diperoleh dari API atau widget yang bergantung pada input pengguna. Oleh karena itu, `const` sangat cocok untuk komponen statis dan konstan, tetapi tidak digunakan pada widget yang perlu berinteraksi dengan state atau data yang dinamis. 
+
+2. **Jelaskan dan bandingkan penggunaan `Column` dan `Row` pada Flutter. Berikan contoh implementasi dari masing-masing layout widget ini!**
+
+    Column:
+    - `Column` digunakan untuk menempatkan widget secara vertikal, seperti daftar item yang tertata dari atas ke bawah.
+    - Setiap widget yang berada di dalam `Column` akan ditempatkan sebagai satu baris di bawah widget sebelumnya.
+    - `Column` menggunakan properti `mainAxisAlignment` dan `crossAxisAlignment` untuk mengatur tata letak widget pada sumbu utama (vertikal) dan sumbu silang (horizontal).
+
+    Row:
+    - `Row` digunakan untuk menempatkan widget secara horizontal, seperti daftar item yang tertera dari kiri ke kanan.
+    - Setiap widget yang berada di dalam `Row` akan ditempatkan sebagai kolom di samping widget sebelumnya.
+    - `Row` juga memiliki properti `mainAxisAlignment` dan `crossAxisAlignment` untuk mengatur posisi widget pada sumbu utama (horizontal) dan sumbu silang (vertikal).
+
+    Contoh implementasi `Column`:
+    ```dart
+    Column(
+          children: [
+            Text(
+              title,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 8.0),
+            Text(content),
+          ],
+        ),
+    ```
+
+    Contoh implementasi `Row`:
+    ```dart
+    Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+            InfoCard(title: 'NPM', content: npm),
+            InfoCard(title: 'Name', content: name),
+            InfoCard(title: 'Class', content: className),
+        ],
+    ),
+    ```
+
+3. **Sebutkan apa saja elemen input yang kamu gunakan pada halaman form yang kamu buat pada tugas kali ini. Apakah terdapat elemen input Flutter lain yang tidak kamu gunakan pada tugas ini? Jelaskan!**
+
+    Elemen input yang saya gunakan pada halaman form:
+    - TextFormField: Elemen ini saya gunakan untuk menerima masukan teks dan angka, seperti nama produk, amount, kuantitas produk, dan deskripsi produk. `TextFormField` juga mendukung validasi input, memastikan bahwa data yang dimasukkan sesuai dengan aturan yang ditentukan, misalnya tidak boleh kosong atau harus berupa angka positif.
+    - CheckboxListTile: Elemen ini saya gunakan untuk menampilkan checkbox dengan label yang menjelaskan apakah produk tersedia atau tidak. Pengguna dapat mencentang checkbox untuk menandai bahwa produk tersebut tersedia. Elemen ini memmbantu menangani input boolean secara sederhana (ya/tidak).
+
+    Elemen input yang tidak saya gunakan pada halaman form:
+    - SwitchListTile: Elemen ini digunakan untuk mengaktifkan atau menonaktifkan suatu fitur.
+    - DropdownButton: Elemen ini digunakan untuk membuat pilihan yang dapat dipilih dari daftar yang ditampilkan saat tombol ditekan.
+    - Slider: Elemen ini digunakan untuk memilih nilai dalam suatu rentang dengan menggeser slider.
+    - Radio: Elemen ini digunakan untuk membuat pilihan dalam kelompok di mana hanya satu opsi yang dapat dipilih pada satu waktu.
+    - DatePicker: Elemen ini digunakan untuk memilih tanggal atau waktu.
+
+4. **Bagaimana cara kamu mengatur tema (theme) dalam aplikasi Flutter agar aplikasi yang dibuat konsisten? Apakah kamu mengimplementasikan tema pada aplikasi yang kamu buat?**
+
+    Ya, saya mengimplementasikan tema dalam aplikasi yang saya buat dengan mendefinisikan warna utama dan sekunder menggunakan `ThemeData` di parameter `theme` pada `MaterialApp` di file `main.dart`. Warna utama dan sekunder diatur melalui `ColorScheme`. sebagai contoh, pada kode ini, `primarySwatch` diatur ke `Colors.grey`, dan warna sekunder disesuaikan dengan abu-abu yang lebih terang `Colors.grey[700]`. Dengan cara ini, setiap widget dan elemen UI di seluruh aplikasi akan memiliki gaya yang konsisten.
+
+5. **Bagaimana cara kamu menangani navigasi dalam aplikasi dengan banyak halaman pada Flutter?**
+
+    Dalam aplikasi Flutter yang saya buat, saya menangani navigasi anatar halaman menggunakan metode dasar push, pop, dan pushReplacement pada Navigator.
+
+    Untuk menavigasi dari satu halaman ke halaman lain, saya menggunakan `Navigator.push`. Metode ini menambahkan halaman baru ke dalam stack navigasi, memungkinkan pengguna berpindah ke halaman baru sementara halaman sebelumnya tetap tersimpan di stack. Jika pengguna ingin kembali ke halaman sebelumnya, saya menggunakan `Navigator.pop`, yang mengeluarkan halaman saat ini dari stack dan membawa pengguna kembali ke halaman sebelumnya. Selain itu, saya juga menggunakan `Navigator.pushReplacement` untuk mengganti halaman saat ini dengan halaman baru tanpa menyimpan halaman lama di stack. 
